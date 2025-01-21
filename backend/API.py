@@ -1,0 +1,1 @@
+# This file defines out API endpoints for our program. This is where the HTTP requests from the frontend react app will be recieved and processed. DBHelper is used here to interact with the postgreSQL database.
