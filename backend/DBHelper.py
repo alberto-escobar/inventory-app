@@ -1,4 +1,6 @@
-# This file defines a python class that helps you interact with the postgreSQL database. In this class we define all the database operations we wish to perform as methods of the class that we can call in other parts of our backend.
+# This file defines a python class that helps you interact with the postgreSQL database. 
+# In this class we define all the database operations we wish to perform as methods of 
+# the class that we can call in other parts of our backend.
 
 import psycopg2
 import config

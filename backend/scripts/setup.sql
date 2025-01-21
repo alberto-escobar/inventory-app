@@ -1,4 +1,5 @@
--- This file is a script used to setup your database. Ideally you should connect to the database and execute this script via CLI.
+-- This file is a script used to setup your database. Ideally you should connect 
+-- to the database and execute this script via CLI.
 -- !!!
 -- BE SURE TO CHANGE THE NAMES OF THE DATABASE AND TABLES 
 -- TO MATCH YOUR PROJECT SPECIFICATIONS IF YOU ARE USING 
