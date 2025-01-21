@@ -1,34 +1,14 @@
-this project will be an example project of a CRUD app that is light weight, efficent, minimal and easy to study and use when faced with a fast prototyping challenge (hackathon)
-
-goals:
-The goal of this template is to provide an easy to pick up and use repo that will explain each step of development at a high level and get your project running on a publicly available server that you may demo your project at a fully functional capacity. There will also be instructions to get the project running locally so you may still demo using local networks
-
-This template will not provide you with any ideas or winning routes, those you need to come up on your own!
-
-the tech stack will be:
-
-- backend
-
-  - pyton
-  - fastapi
-
-- database
-
-  - postgresql
-
-- frontend
-
-  - javascript
-  - react
-
-- hosting service (TBD)
-
-  - render
-  - supabase
-
 # Inventory Web app
 
 keep track of your inventory with this simple app!
+
+this project is a template project of a CRUD app that is light weight, efficent, minimal and easy to study and use when faced with a fast prototyping challenge (hackathon). The goal of this template is to provide an easy to pick up and hack repo and get your project running on a publicly available server so that you may demo your project at a fully functional capacity. This template will not provide you with any ideas or winning routes, those you need to come up on your own!
+
+tech stack:
+
+- python
+- postgresql
+- fastapi
 
 ## Specifications/User Stories
 
