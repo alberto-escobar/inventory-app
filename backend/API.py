@@ -8,6 +8,8 @@ from Models import *
 app = FastAPI()
 db = DBHelper()
 
+print("backend running")
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Inventory App API!"}

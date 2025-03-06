@@ -8,5 +8,10 @@
             "type": "shell",
             "command": "echo Starting Backend! ; cd backend ; uvicorn API:app --reload"
         },
+        {
+            "label": "start frontend server",
+            "type": "shell",
+            "command": "echo Starting Frontend! ; cd frontend/inventory-app ; npm install ; npm run dev"
+        },
     ]
 }
