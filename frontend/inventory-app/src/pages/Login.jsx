@@ -8,55 +8,48 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // const handleLogin = async () => {
-  //   setError("");
-  //   try {
-  //     const response = await fetch("YOUR_BACKEND_API_URL/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     const data = await response.json();
-  //     if (!response.ok) throw new Error(data.message || "Login failed");
-
-  //     // Store token in cookies
-  //     Cookies.set("authToken", data.token, { expires: 1 }); // Expires in 1 day
-  //     alert("Login successful!");
-  //     navigate("/home");
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
-
-const handleLoginTest = async () => {
+  const handleLoginTest = async () => {
     setError("");
     Cookies.set("authToken", "test_token", { expires: 1 }); // Expires in 1 day
     navigate("/home");
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLoginTest}>Log In</button>
-      <p style={{ textAlign: "center" }}>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-6 w-80">
+        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+        {error && <p className="text-red-500 text-center text-sm">{error}</p>}
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-2 border rounded-md mb-2"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-2 border rounded-md mb-4"
+        />
+        <button
+          onClick={handleLoginTest}
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >
+          Log In
+        </button>
+        <p className="text-center text-sm mt-3">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-500 hover:underline">
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
 
 export default Login;
+
+
