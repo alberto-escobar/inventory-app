@@ -67,7 +67,7 @@ const Home = () => {
 
         {/* Modal for Adding Items */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="fixed inset-0 backdrop-blur-[4px] flex items-center justify-center">
             <div className="bg-white p-6 rounded-md shadow-lg w-80">
               <h3 className="text-xl font-bold mb-4 text-center">Add New Item</h3>
               <input
