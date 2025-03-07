@@ -2,11 +2,21 @@
 # HTTP requests from the frontend react app will be recieved and processed. 
 # DBHelper is used here to interact with the postgreSQL database.
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from DBHelper import DBHelper
 from Models import *
 
 app = FastAPI()
 db = DBHelper()
+
+# Enable CORS for your frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Allow requests from your frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 print("backend running")
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../Requests";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -7,10 +8,15 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleRegisterTest = async () => {
+  const handleRegister = async () => {
     setError("");
-    alert("Registration successful! Redirecting to login...");
-    navigate("/login");
+    try {
+      const response = await registerUser(email, password);
+      alert(response.message || "Registration successful! Redirecting to login...");
+      navigate("/login");
+    } catch (err) {
+      setError(err.response?.data?.detail || "Registration failed. Please try again.");
+    }
   };
 
   return (
@@ -33,7 +39,7 @@ const Register = () => {
           className="w-full p-2 border rounded-md mb-4"
         />
         <button
-          onClick={handleRegisterTest}
+          onClick={handleRegister}
           className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
         >
           Register
@@ -45,7 +51,7 @@ const Register = () => {
           </Link>
         </p>
       </div>
-      </div>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { loginUser } from "../Requests";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,10 +9,15 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLoginTest = async () => {
+  const handleLogin = async () => {
     setError("");
-    Cookies.set("authToken", "test_token", { expires: 1 }); // Expires in 1 day
-    navigate("/home");
+    try {
+      const response = await loginUser(email, password);
+      Cookies.set("authToken", response.user_id, { expires: 1 }); // Store user ID in cookie
+      navigate("/home");
+    } catch (err) {
+      setError(err.response?.data?.detail || "Login failed. Please try again.");
+    }
   };
 
   return (
@@ -34,7 +40,7 @@ const Login = () => {
           className="w-full p-2 border rounded-md mb-4"
         />
         <button
-          onClick={handleLoginTest}
+          onClick={handleLogin}
           className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
         >
           Log In
@@ -51,5 +57,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
