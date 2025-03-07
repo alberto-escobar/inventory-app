@@ -2,12 +2,22 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000"; // Change this if your backend is hosted elsewhere
 
+export const hashPassword = async (password) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+};
+
+
 // Register a new user
 export const registerUser = async (email, password) => {
   try {
+    const hashedPassword = await hashPassword(password);
     const response = await axios.post(`${BASE_URL}/registerUser`, {
       email,
-      password_hash: password, // Assuming the backend expects a hashed password
+      password_hash: hashedPassword,
     });
     return response.data;
   } catch (error) {
@@ -19,9 +29,10 @@ export const registerUser = async (email, password) => {
 // Login a user
 export const loginUser = async (email, password) => {
   try {
+    const hashedPassword = await hashPassword(password);
     const response = await axios.post(`${BASE_URL}/loginUser`, {
       email,
-      password_hash: password,
+      password_hash: hashedPassword,
     });
     return response.data; // Returns { user_id: X }
   } catch (error) {

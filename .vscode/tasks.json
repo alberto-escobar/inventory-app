@@ -13,5 +13,17 @@
             "type": "shell",
             "command": "echo Starting Frontend! ; cd frontend ; npm install ; npm run dev"
         },
+        {
+            "label": "start full stack",
+            "dependsOn": ["start backend server", "start frontend server"],
+            "runOptions": {
+                "runOn": "default"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
     ]
 }
