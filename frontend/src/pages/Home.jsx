@@ -22,6 +22,7 @@ const Home = () => {
   const fetchItems = async () => {
     try {
       const data = await getItems(userId);
+      data.sort((a, b) => a[0].localeCompare(b[0]));
       setItems(data);
     } catch (error) {
       console.error("Failed to fetch items:", error);

@@ -22,7 +22,8 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Items (
-    item_name VARCHAR(255) PRIMARY KEY,
+    item_name VARCHAR(255),
     quantity INT,
-    user_id  INT REFERENCES Users(user_id) ON DELETE CASCADE
+    user_id  INT REFERENCES Users(user_id) ON DELETE CASCADE,
+    PRIMARY KEY (item_name, user_id)
 );
