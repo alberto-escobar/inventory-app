@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000"; // Change this if your backend is hosted elsewhere
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
 
 export const hashPassword = async (password) => {
   const encoder = new TextEncoder();
