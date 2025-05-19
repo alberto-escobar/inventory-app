@@ -92,3 +92,7 @@ Creating pages is simple:
 1. create the page `.jsx` file in `frontend/src/pages`
 2. add a route to `App.jsx` that leads to the page
 3. _optional_ add link to the page in `frontend/src/components/BottomNav.jsx`
+
+## How to deploy to Render
+
+1. make account

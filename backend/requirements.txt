@@ -3,5 +3,3 @@ psycopg2
 uvicorn
 pydantic
 load_dotenv
-os
-random
