@@ -3,16 +3,18 @@
 # the class that we can call in other parts of our backend.
 
 import psycopg2
-import config
+from dotenv import load_dotenv
+load_dotenv()
+import os
 import random
 class DBHelper:
     def __init__(self):
         self.connection = psycopg2.connect(
-            dbname=config.DB_NAME,
-            user=config.DB_USER,
-            password=config.DB_PASSWORD,
-            host=config.DB_HOST,
-            port=config.DB_PORT
+            dbname=os.environ.get("DB_name"),
+            user=os.environ.get("DB_USER"),
+            password=os.environ.get("DB_PASSWORD"),
+            host=os.environ.get("DB_HOST"),
+            port=os.environ.get("DB_PORT")
         )
 
     def __del__(self):
