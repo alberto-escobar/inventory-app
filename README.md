@@ -95,4 +95,20 @@ Creating pages is simple:
 
 ## How to deploy to Render
 
-1. make account
+1. Make a render account
+2. Create a project, this helps organize your services
+3. Create a postgres database service, use the free tier
+4. Take note of the internal database connection url and external database connection url
+5. Use the external database connection url with your terminal to connect and setup your database: `pql <external database connection url>`
+6. Create a web service, connect your project repo to it, use the following configurations:
+   - Root Directory = backend
+   - Build Command = pip install -r requirements.txt
+   - Start Command = uvicorn API:app --host 0.0.0.0 --port $PORT
+   - add an environment variables with the following details:
+     - name of variable = `DB_URL`
+     - value = `<internal database connection url>`
+7. Create a static site, connect your project repo to it, use the following configurations:
+   - a
+   - b
+     - a
+     - b
