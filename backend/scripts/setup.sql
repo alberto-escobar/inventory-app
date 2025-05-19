@@ -18,12 +18,12 @@ CREATE DATABASE inventory_app;
 CREATE TABLE Users (
     email VARCHAR(255) UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    user_id  SERIAL PRIMARY KEY
+    user_id BIGINT PRIMARY KEY
 );
 
 CREATE TABLE Items (
     item_name VARCHAR(255),
     quantity INT,
-    user_id  INT REFERENCES Users(user_id) ON DELETE CASCADE,
+    user_id  BIGINT REFERENCES Users(user_id) ON DELETE CASCADE,
     PRIMARY KEY (item_name, user_id)
 );

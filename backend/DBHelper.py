@@ -4,7 +4,7 @@
 
 import psycopg2
 import config
-
+import random
 class DBHelper:
     def __init__(self):
         self.connection = psycopg2.connect(
@@ -21,7 +21,12 @@ class DBHelper:
     def registerUser(self, email: str, password_hash: str) -> bool:
         cursor = self.connection.cursor()
         try:
-            cursor.execute("INSERT INTO Users (email, password_hash) VALUES (%s, %s);", (email, password_hash))
+            flag = True
+            while flag:
+                id = random.getrandbits(32)
+                cursor.execute("SELECT User_id FROM Users WHERE user_id = %s;", (id,))
+                flag = cursor.fetchone() is not None
+            cursor.execute("INSERT INTO Users (user_id, email, password_hash) VALUES (%s, %s, %s);", (id, email, password_hash))
         except Exception as e:
             print(f"Error occured during registerUser: {e}")
             return False
