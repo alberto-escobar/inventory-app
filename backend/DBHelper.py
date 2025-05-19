@@ -9,13 +9,7 @@ import os
 import random
 class DBHelper:
     def __init__(self):
-        self.connection = psycopg2.connect(
-            dbname=os.environ.get("DB_name"),
-            user=os.environ.get("DB_USER"),
-            password=os.environ.get("DB_PASSWORD"),
-            host=os.environ.get("DB_HOST"),
-            port=os.environ.get("DB_PORT")
-        )
+        self.connection = psycopg2.connect(os.environ.get("DB_URL"))
 
     def __del__(self):
         self.connection.close()
