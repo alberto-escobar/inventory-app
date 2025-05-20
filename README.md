@@ -4,7 +4,7 @@ keep track of your inventory with this simple web app!
 
 The most CRUD app of all time! This is a template for a minimal CRUD web app, designed for speed, clarity, and easy customization. Use it as a starting point for hackathons, demos, or learning how to build and deploy a full-stack web application. You bring the ideas—this repo brings the boilerplate.
 
-## tech stack
+## Tech Stack
 
 - **PostgreSQL**: Database
 - **Python**: Backend language
