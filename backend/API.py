@@ -9,7 +9,6 @@ from Models import *
 app = FastAPI()
 db = DBHelper()
 
-# Enable CORS for your frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -48,7 +47,7 @@ def get_items(user_id: int):
     items = db.getItems(user_id)
     if items is not None:
         return {"items": items}
-    raise HTTPException(status_code=500, detail="An error occurred while fetching items")
+    raise HTTPException(status_code=500, detail="Failed to get items")
 
 
 @app.post("/createItem")
@@ -67,7 +66,7 @@ def delete_item(request: DeleteItemRequest):
     raise HTTPException(status_code=400, detail="Failed to delete item")
 
 
-@app.post("/updateItem")
+@app.put("/updateItem")
 def update_item(request: UpdateItemRequest):
     success = db.updateItem(request.user_id, request.item_name, request.quantity)
     if success:

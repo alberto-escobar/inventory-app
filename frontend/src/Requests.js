@@ -83,7 +83,7 @@ export const deleteItem = async (user_id, item_name) => {
 // Update an item
 export const updateItem = async (user_id, item_name, quantity) => {
   try {
-    const response = await axios.post(`${BASE_URL}/updateItem`, {
+    const response = await axios.put(`${BASE_URL}/updateItem`, {
       user_id,
       item_name,
       quantity,

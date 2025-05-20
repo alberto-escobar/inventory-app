@@ -4,9 +4,11 @@
 
 import psycopg2
 from dotenv import load_dotenv
-load_dotenv()
 import os
 import random
+
+load_dotenv()
+
 class DBHelper:
     def __init__(self):
         self.connection = psycopg2.connect(os.environ.get("DB_URL"))

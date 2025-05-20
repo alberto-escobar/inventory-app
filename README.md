@@ -1,35 +1,33 @@
 # Inventory Web app
 
-keep track of your inventory with this simple app!
+keep track of your inventory with this simple web app!
 
-The most CRUD app of all time. This project is a template project of a CRUD app that is light weight, efficent, minimal and easy to study and use when faced with a fast prototyping challenge (hackathon). The goal of this template is to provide an easy to pick up and hack repo and get your project running on a publicly available server so that you may demo your project at a fully functional capacity. This template will not provide you with any ideas or winning routes, those you need to come up on your own!
+The most CRUD app of all time! This is a template for a minimal CRUD web app, designed for speed, clarity, and easy customization. Use it as a starting point for hackathons, demos, or learning how to build and deploy a full-stack web application. You bring the ideas—this repo brings the boilerplate.
 
-tech stack:
+## tech stack
 
-- postgresql: database
-- python: backend programming language
-- fastapi: backend framework
+- **PostgreSQL**: Database
+- **Python**: Backend language
+- **FastAPI**: Backend framework
+- **JavaScript**: Frontend language
+- **React**: Frontend framework
+- **Vite**: Frontend development tool
+- **Tailwind CSS**: UI framework
 
-- javascirpt: front programming language
-- react: frontend framework
-- vite: Help with development by running locally
-- tailwindcss: UI
+You can swap FastAPI or Tailwind CSS for alternatives if you prefer.
 
-This tech stack is the bar minimum I could get it. Fastapi could be subbed for other API frameworks. tailwindcss could be subbed for other UI options.
+## Features
 
-## Specifications/User Stories
-
-- As a user I should be able to register an account
-- As a user I should be able to log into my account
-- As a user I should be able to log out of my account
-- As a user, after logging in, I should be able to view the items I have in my inventory. (READ)
-- As a user, after logging in, I should be be able to add an item to my inventory. When Adding an item I can state the quantity I have of the item. (CREATE)
-- As a user, after logging in, I should be able to update the quanity of an item I have (UPDATE)
-- As a user, after logging in, I should be able to delete an items from my inventory (DELETE)
+- Register for an account
+- Log in and log out
+- View your inventory
+- Add items with quantities
+- Update item quantities
+- Delete items
 
 ## Architecture
 
-![image](resources\architecture.png)
+![image](resources/architecture.png)
 
 ## Database Design
 
@@ -39,19 +37,69 @@ This tech stack is the bar minimum I could get it. Fastapi could be subbed for o
 | ------------- | ----------- | ----------- |
 | email         | varchar     | no          |
 | password_hash | varchar     | no          |
-| user_id       | varchar     | yes         |
+| user_id       | bigint      | yes         |
 
 ### Items table
 
 | column name | column type | primary key |
 | ----------- | ----------- | ----------- |
 | item_name   | varchar     | yes         |
-| user_id\*   | varchar     | yes         |
-| quantity    | varchar     | no          |
+| user_id\*   | bigint      | yes         |
+| quantity    | int         | no          |
 
 \*user_id will also be a forign key to Users
 
-## API Endpoints
+## Getting Started (Local)
+
+1. Install the following:
+
+   - Node.js & npm (for frontend)
+   - Python 3.10+ (for backend)
+   - PostgreSQL (for database)
+
+2. clone this project
+3. open in your VSCode
+4. run the `run setup` task
+5. Go into your local postgres server and set up your database
+
+   - there is a sql script `setup.sql` in the backend folder that can help with setting up the database
+
+6. create a `.env` file in the backend folder. Replace the placeholders with your actual values and add the following:
+
+```
+DB_URL=postgresql://<username>:<password>@<host>:<port>/<database>
+```
+
+7. create a `.env` file in the frontend folder and the following:
+
+```
+VITE_BASE_URL=http://localhost:8000
+```
+
+8. Run the `start full stack` task to start the servers. You can test logging in with the following test account:
+
+```
+alice@email.com
+password
+```
+
+## Backend Development
+
+The back end uses a very basic backend architecture.
+
+- `API.py` — Defines all API endpoints (routes).
+- `Models.py` — Contains request/response data models (Pydantic).
+- `DBHelper.py` — Handles all database read/write logic.
+
+Typical workflow:
+
+1. Define request/response models in Models.py.
+2. Add new endpoints in API.py, using your models.
+3. Implement database logic in DBHelper.py as needed.
+
+The more functionality can be added in th backend if your idea demands it and it should be very straight forward to implement it.
+
+### API Endpoints
 
 | method | name       | parameters                   | returns         |
 | ------ | ---------- | ---------------------------- | --------------- |
@@ -62,23 +110,7 @@ This tech stack is the bar minimum I could get it. Fastapi could be subbed for o
 | POST   | updateItem | user_id, item_name, quantity | success/failure |
 | DELETE | deleteItem | user_id, item_name           | success/failure |
 
-## Errors
-
-- general errors
-- error connecting to server
-- error connecting to database
-- error registering, account exists
-- error logging in, credientials are wrong
-- error creating item, item already in inventory
-- error updating item, item not in inventory
-- error updating item, invalid quantity
-- error deleting item, item not in inventory
-
-## Backend dev
-
-TBA
-
-## Frontend dev
+## Frontend Development
 
 The front end uses a **router** mechanism. This was choosen so that the front end does not have to constantly reload when change pages.
 The template features a fairly simple frontend deisgn:
@@ -97,18 +129,23 @@ Creating pages is simple:
 
 1. Make a render account
 2. Create a project, this helps organize your services
-3. Create a postgres database service, use the free tier
+3. Create a postgres database service
+   - use the free tier (your database will eventually get deleted but in 30 days)
 4. Take note of the internal database connection url and external database connection url
-5. Use the external database connection url with your terminal to connect and setup your database: `pql <external database connection url>`
-6. Create a web service, connect your project repo to it, use the following configurations:
+5. Use the external database connection url with your terminal to connect and setup your database
+   - `pql <external database connection url>`
+6. Create a web service, connect to your github project repo, use the following configurations:
    - Root Directory = backend
    - Build Command = pip install -r requirements.txt
    - Start Command = uvicorn API:app --host 0.0.0.0 --port $PORT
    - add an environment variables with the following details:
      - name of variable = `DB_URL`
      - value = `<internal database connection url>`
-7. Create a static site, connect your project repo to it, use the following configurations:
-   - a
-   - b
-     - a
-     - b
+7. Create a static site, connect to your github project repo, use the following configurations:
+   - Root Directory = frontend
+   - Build Command = npm install && npm run build
+   - Publish Directory = dist
+   - add an environment variables with the following details:
+     - name of variable = `VITE_BASE_URL`
+     - value = `<backend web service url>`
+8. Thats it your app is now deployed!
