@@ -135,16 +135,16 @@ Creating pages is simple:
 5. Use the external database connection url with your terminal to connect and setup your database
    - `pql <external database connection url>`
 6. Create a web service, connect to your github project repo, use the following configurations:
-   - Root Directory = backend
-   - Build Command = pip install -r requirements.txt
-   - Start Command = uvicorn API:app --host 0.0.0.0 --port $PORT
+   - Root Directory = `backend`
+   - Build Command = `pip install -r requirements.txt`
+   - Start Command = `uvicorn API:app --host 0.0.0.0 --port $PORT`
    - add an environment variables with the following details:
      - name of variable = `DB_URL`
      - value = `<internal database connection url>`
 7. Create a static site, connect to your github project repo, use the following configurations:
-   - Root Directory = frontend
-   - Build Command = npm install && npm run build
-   - Publish Directory = dist
+   - Root Directory = `frontend`
+   - Build Command = `npm install && npm run build`
+   - Publish Directory = `dist`
    - add an environment variables with the following details:
      - name of variable = `VITE_BASE_URL`
      - value = `<backend web service url>`
