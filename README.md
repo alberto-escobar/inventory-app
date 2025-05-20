@@ -49,7 +49,7 @@ You can swap FastAPI or Tailwind CSS for alternatives if you prefer.
 
 \*user_id will also be a forign key to Users
 
-## Getting Started (Local)
+## Getting Started
 
 1. Install the following:
 
